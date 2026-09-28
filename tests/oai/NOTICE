@@ -1,0 +1,11 @@
+The test documents in this directory come from the OpenAPI Initiative's
+Arazzo Specification repository:
+
+    https://github.com/OAI/Arazzo-Specification
+
+    pass/, fail/       the specification's test suite (branch v1.1-dev)
+    examples/1.0.0/    the published 1.0.0 examples
+    examples/1.1.0/    the 1.1.0 examples
+
+They are licensed under the Apache License, Version 2.0; a copy is in
+../../LICENSE-APACHE. They are used unchanged.

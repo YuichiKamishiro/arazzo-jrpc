@@ -1,0 +1,19 @@
+The JSON Schemas in this directory come from the OpenAPI Initiative's
+Arazzo Specification repository:
+
+    https://github.com/OAI/Arazzo-Specification
+
+    arazzo-1.0.json  Arazzo 1.0 schema
+    arazzo-1.1.json  Arazzo 1.1 schema, $id https://spec.openapis.org/arazzo/1.1/schema/2026-04-15
+                     (branch v1.1-dev)
+
+They are licensed under the Apache License, Version 2.0; a copy is in
+../LICENSE-APACHE.
+
+Changes made in this crate:
+
+- arazzo-1.1.json, $defs/payload-replacement-object/properties/value: the
+  upstream schema allows only a string or a Selector Object; here any
+  non-object value or a Selector Object is allowed, because section 5.8.15 of
+  the specification gives `value: 10` as an example. The change is marked
+  with a "$comment" in the file.

@@ -1,0 +1,15 @@
+openapi: 3.1.0
+info: { title: httpbin, version: '1' }
+servers:
+  - url: https://httpbin.org
+paths:
+  /get:
+    get:
+      operationId: echo
+      parameters:
+        - { name: q, in: query, required: true, schema: { type: string } }
+  /status/{code}:
+    get:
+      operationId: status
+      parameters:
+        - { name: code, in: path, required: true, schema: { type: integer } }

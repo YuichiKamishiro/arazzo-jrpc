@@ -1,0 +1,38 @@
+[package]
+name = "arazzo-jrpc"
+version = "0.2.0"
+edition = "2021"
+rust-version = "1.90"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/YuichiKamishiro/arazzo-jrpc"
+description = "OAI Arazzo 1.1.0: model, validation against the official schema, runtime expressions, criteria, selectors and a sequential executor"
+keywords = ["openapi", "arazzo", "workflow", "json-schema", "jsonrpc"]
+categories = ["web-programming", "parser-implementations"]
+
+[[example]]
+name = "http"
+required-features = ["http"]
+
+[[example]]
+name = "jsonrpc"
+required-features = ["http"]
+
+[features]
+default = ["http", "xpath"]
+http = ["dep:reqwest"]
+xpath = ["dep:xee-xpath", "dep:sxd-xpath", "dep:sxd-document"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml_ng = "0.10"
+jsonschema = { version = "0.58.2", default-features = false }
+url = "2"
+percent-encoding = "2"
+serde_json_path = "0.7"
+fancy-regex = "0.19"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "rustls-tls"], optional = true }
+xee-xpath = { version = "0.1", optional = true }
+sxd-xpath = { version = "0.4", optional = true }
+sxd-document = { version = "0.3", optional = true }

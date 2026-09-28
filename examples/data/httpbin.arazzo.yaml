@@ -1,0 +1,33 @@
+arazzo: 1.1.0
+info:
+  title: httpbin round trip
+  version: '1'
+sourceDescriptions:
+  - { name: httpbin, url: ./httpbin.openapi.yaml, type: openapi }
+workflows:
+  - workflowId: roundTrip
+    summary: Echo a query parameter, then ask for a chosen status code.
+    inputs:
+      type: object
+      required: [ q ]
+      properties:
+        q: { type: string }
+        code: { type: integer, default: 204 }
+    steps:
+      - stepId: echo
+        operationId: echo
+        parameters:
+          - { name: q, in: query, value: $inputs.q }
+        successCriteria:
+          - { condition: $statusCode == 200 }
+          - { context: $response.body, condition: $.args.q, type: jsonpath }
+        outputs:
+          echoed: $response.body#/args/q
+      - stepId: status
+        operationId: status
+        parameters:
+          - { name: code, in: path, value: $inputs.code }
+        successCriteria:
+          - { condition: $statusCode == $inputs.code }
+    outputs:
+      echoed: $steps.echo.outputs.echoed
